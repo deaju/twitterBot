@@ -4,6 +4,7 @@ import os
 import re
 
 from datetime import datetime
+from urllib import parse
 import twitter
 import psycopg2
 
