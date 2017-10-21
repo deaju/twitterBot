@@ -32,7 +32,7 @@ def connectPostgres():
 def storeProgress(conn,progress):
     date=datetime.now().strftime("%Y-%m-%d")
     storeProgress=selectProgress(conn,date)
-    if len(progress) == 0:
+    if len(storeProgress) == 0:
         cur=conn.cursor()
         cur.execute('INSERT INTO nagoyan_sakura VALUES (%s,%s)',[date,progress])
         conn.commit()
