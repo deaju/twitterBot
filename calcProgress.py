@@ -31,16 +31,16 @@ def connectPostgres():
 
 def storeProgress(conn,progress):
     date=datetime.now().strftime("%Y-%m-%d")
-    progress=selectProgress(conn,date)
+    storeProgress=selectProgress(conn,date)
     if len(progress) == 0:
         cur=conn.cursor()
         cur.execute('INSERT INTO nagoyan_sakura VALUES (%s,%s)',[date,progress])
-        cur.commit()
+        conn.commit()
         cur.close()
     else:
         cur=conn.cursor()
-        cur.execute("UPDATE nagoyan_sakura SET progress=(%s) WHERE date=(%s)",(progress,date,))
-        cur.commit()
+        cur.execute("UPDATE nagoyan_sakura SET progress=(%s) WHERE date=(%s)",[progress,date])
+        conn.commit()
         cur.close()
     return
         
