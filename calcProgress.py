@@ -36,10 +36,12 @@ def storeProgress(conn,progress):
         cur=conn.cursor()
         cur.execute('INSERT INTO nagoyan_sakura VALUES (%s,%s)',[date,progress])
         cur.commit()
+        cur.close()
     else:
         cur=conn.cursor()
-        cur.execute('UPDATE nagoyan_sakura SET progress=(%s) WHERE date=(%s)',[progress,date])
+        cur.execute('UPDATE nagoyan_sakura SET progress=(%d) WHERE date=(%s)',[progress,date])
         cur.commit()
+        cur.close()
     return
         
     
@@ -47,6 +49,7 @@ def selectProgress(conn,date):
     cur = conn.cursor()
     cur.execute('SELECT * FROM nagoyan_sakura where date=(%s)',[date])
     progress = cur.fetchall()
+    cur.close()
     return progress
 
 def getAuth():
