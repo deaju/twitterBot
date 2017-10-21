@@ -77,9 +77,9 @@ def getUserProgress(twitter,screen_name):
 def postTweet(twitter,delta):
     if delta > 0:
         message="今日の進捗は{}話です".format(delta)
-    else if delta <= 0:
+    elif delta <= 0:
         message="進捗ありません"
-    twitter.statuses.update(status=message
+    twitter.statuses.update(status=message)
 
 def main():
     twitter = getAuth()
