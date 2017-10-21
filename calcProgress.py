@@ -39,7 +39,7 @@ def storeProgress(conn,progress):
         cur.close()
     else:
         cur=conn.cursor()
-        cur.execute('UPDATE nagoyan_sakura SET progress=(%d) WHERE date=(%s)',[progress,date])
+        cur.execute('UPDATE nagoyan_sakura SET progress=%d WHERE date=%s',[progress,date])
         cur.commit()
         cur.close()
     return
