@@ -68,6 +68,16 @@ def getAuth():
     t = twitter.Twitter(auth=auth)
     return t
 
+def getAuthUpload():
+    auth = twitter.OAuth(consumer_key=oath_key_dict["consumer_key"],
+                  consumer_secret=oath_key_dict["consumer_secret"],
+                  token=oath_key_dict["access_token"],
+                  token_secret=oath_key_dict["access_token_secret"]
+                  )
+    t = twitter.Twitter(auth=auth,domain='upload.twitter.com')
+    return t
+    
+
 def getUserProgress(twitter,screen_name):
     user = twitter.users.lookup(screen_name=screen_name)
     user_name = user[0]['name']
@@ -75,11 +85,25 @@ def getUserProgress(twitter,screen_name):
 
 
 def postTweet(twitter,delta):
+    t_upload = getAuthUpload()
     if delta > 0:
         message="@nagoyan240 今日の進捗は{}話です".format(delta)
+        id_img = t_upload.media.upload(media=imagedata)["smile.jpg"]
     elif delta <= 0:
         message="@nagoyan240 進捗ありません"
-    twitter.statuses.update(status=message)
+        id_img = t_upload.media.upload(media=imagedata)["anger.jpg"]
+    twitter.statuses.update(status=message, media_ids=id_img)
+
+def postTweetDummy(twitter,delta):
+    t_upload = getAuthUpload()
+    if delta > 0:
+        message="今日の進捗は{}話です".format(delta)
+        id_img = t_upload.media.upload(media=imagedata)["smile.jpg"]
+    elif delta <= 0:
+        message="進捗ありません"
+        id_img = t_upload.media.upload(media=imagedata)["anger.jpg"]
+    twitter.statuses.update(status=message, media_ids=id_img)
+
 
 def main():
     twitter = getAuth()
