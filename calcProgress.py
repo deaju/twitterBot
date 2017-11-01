@@ -94,19 +94,7 @@ def postTweet(twitter,delta):
         id_img = t_upload.media.upload(media=imagedata)["anger.jpg"]
     twitter.statuses.update(status=message, media_ids=id_img)
 
-def postTweetDummy(twitter,delta):
-    t_upload = getAuthUpload()
-    if delta > 0:
-        with open("smile.jpg", "rb") as imagefile:
-            imagedata = imagefile.read()
-        message="今日の進捗は{}話です".format(delta)
-        id_img = t_upload.media.upload(media=imagedata)["media_id_string"]
-    elif delta <= 0:
-        with open("anger.jpg", "rb") as imagefile:
-            imagedata = imagefile.read()
-        message="進捗ありません"
-        id_img = t_upload.media.upload(media=imagedata)["media_id_string"]
-    twitter.statuses.update(status=message, media_ids=id_img)
+
 
 
 def main():
@@ -117,7 +105,7 @@ def main():
     storeProgress(conn,progress)
 
     delta = deltaProgress(conn)
-    postTweetDummy(twitter,delta)
+    postTweet(twitter,delta)
 
 main()
 
