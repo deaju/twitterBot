@@ -113,7 +113,7 @@ def main():
     storeProgress(conn,progress)
 
     delta = deltaProgress(conn)
-    postTweet(twitter,delta)
+    postTweetDummy(twitter,delta)
 
 main()
 
