@@ -87,11 +87,15 @@ def getUserProgress(twitter,screen_name):
 def postTweet(twitter,delta):
     t_upload = getAuthUpload()
     if delta > 0:
+        with open("smile.jpg", "rb") as imagefile:
+              imagedata = imagefile.read()
+        id_img = t_upload.media.upload(media=imagedata)["media_id_string"]
         message="@nagoyan240 今日の進捗は{}話です".format(delta)
-        id_img = t_upload.media.upload(media=imagedata)["smile.jpg"]
     elif delta <= 0:
+        with open("anger.jpg", "rb") as imagefile:
+              imagedata = imagefile.read()
         message="@nagoyan240 進捗ありません"
-        id_img = t_upload.media.upload(media=imagedata)["anger.jpg"]
+        id_img = t_upload.media.upload(media=imagedata)["media_id_string"]
     twitter.statuses.update(status=message, media_ids=id_img)
 
 
