@@ -10,10 +10,10 @@ import psycopg2
 
 
 oath_key_dict = {
-    "consumer_key": "tvYsqXcTYbxFtt9RAE3hElL7H",
-    "consumer_secret": "2WNXt2Xw9uwAeS2WOKSwHniICTE8MZUgkODFYNhUkesPTH6S3F",
-    "access_token": "920973082130444288-cuNmbIaeHwaVCGS7jyD2J6OkugxasRA",
-    "access_token_secret": "ztebRO91VhlYGNyihQpJBllf9sZhm4WYVgcEBsQ5stuMJ"
+    "consumer_key": os.environ["CONSUMER_KEY"],
+    "consumer_secret": os.environ["CONSUMER_SECRET"],
+    "access_token": os.environ["ACCESS_TOKEN"],
+    "access_token_secret": os.environ["ACCESS_TOKEN_SECRET"]
 }
 
 def connectPostgres():
@@ -111,6 +111,6 @@ def main():
     delta = deltaProgress(conn)
     postTweet(twitter,delta)
 
-main()
+
 
 
