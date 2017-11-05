@@ -12,8 +12,8 @@ baseURL = 'https://anime.dmkt-sp.jp/animestore/'
 topURL = 'tp_pc'
 loginURL = 'login?next_url=https%3A%2F%2Fanime.dmkt-sp.jp%2Fanimestore%2Ftp_pc'
 historyURL = 'mpa_hst_pc?workType=0&editModeFlag=0&selectPage=1'
-id=os.environ["ID"]
-pass=os.environ["PASS"]
+animeId = os.environ["ID"]
+animePass = os.environ["PASS"]
 
 #driver = webdriver.Chrome()
 
@@ -23,8 +23,8 @@ pass=os.environ["PASS"]
 
 def login(driver,url):
     driver.get(url)
-    driver.find_element_by_name('authid').send_keys(id)
-    driver.find_element_by_name('authpass').send_keys(pass)
+    driver.find_element_by_name('authid').send_keys(animeId)
+    driver.find_element_by_name('authpass').send_keys(animePass)
     driver.find_element_by_name('subForm').click()
 
 def getHistory(driver,url):
