@@ -111,6 +111,6 @@ def main():
     delta = deltaProgress(conn)
     postTweet(twitter,delta)
 
-
+main()
 
 
