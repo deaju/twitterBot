@@ -1,0 +1,39 @@
+{% load static %}
+<meta charset="utf-8">
+<link href="{% static 'graph/nv.d3.css'%}" rel="stylesheet" type="text/css">
+<body>
+    <div id="chart">
+        <svg style="height:500px;" />
+    </div>
+
+    <script src="{% static 'graph/d3.v3.min.js'%}"></script>
+    <script src="{% static 'graph/nv.d3.js'%}"></script>
+    <script type="text/javascript">
+    console.log({{latest_history_list}});
+
+    nv.addGraph(function() {
+        //var chart = nv.models.historicalBarChart();
+        //var chart = nv.models.lineWithFocusChart();
+        var chart = nv.models.lineChart();
+
+        chart.xAxis.tickFormat(d3.format(',f'));
+        chart.yAxis.tickFormat(d3.format(',.2f'));
+
+        d3.select('#chart svg')
+            .datum(testData())
+            .transition().duration(500)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+    function testData() {
+        return [{
+                 values: [{x:1,y:100},
+                          {x:2,y:130},
+                          {x:3,y:90},]}];
+    }
+    </script>
+</body>

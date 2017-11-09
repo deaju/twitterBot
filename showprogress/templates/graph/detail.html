@@ -1,0 +1,9 @@
+{% if latest_history_list %}
+    <ul>
+    {% for history in latest_history_list %}
+        <li>{{ history.progress }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
