@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'showprogress.apps.Pollsconfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
