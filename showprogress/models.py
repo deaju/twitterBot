@@ -7,5 +7,15 @@ class History(models.Model):
     progress = models.IntegerField()
     date = models.DateTimeField()
     user = models.CharField(max_length=100)
+    num = models.IntegerField()
     def __str__(self):
         return smart_str('%s %s %s %s' % (self.title, self.progress, self.date, self.user))
+
+class NagoyanSakura(models.Model):
+    date = models.DateField(blank=True, null=True)
+    progress = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'nagoyan_sakura'
+

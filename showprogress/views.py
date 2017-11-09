@@ -13,3 +13,10 @@ def detail(request, title):
     json_serializer.serialize(latest_history_list,ensure_ascii=False);
     context = {'latest_history_list': latest_history_list}
     return render(request, 'graph/index20.html', context)
+
+def sakura(request):
+    latest_history_list = History.objects.filter(title=title).order_by('date')[:4]
+    json_serializer = serializers.get_serializer('json')()
+    json_serializer.serialize(latest_history_list,ensure_ascii=False);
+    context = {'latest_history_list': latest_history_list}
+    return render(request, 'graph/index20.html', context)
