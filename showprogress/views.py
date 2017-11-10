@@ -22,7 +22,7 @@ def sakura(request):
 def getDate(history_list):
     returnValue=[]
     for history in history_list:
-        returnValue.append(history.date.strftime("%Y/%m/%d"))
+        returnValue.append(history.date.strftime('%Y/%m/%d'))
     return returnValue
 def getProgress(history_list):
     returnValue=[]
