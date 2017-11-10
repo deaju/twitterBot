@@ -6,8 +6,6 @@
 
     <script src="{% static 'graph/Chart.min.js'%}"></script>
     <script type="text/javascript">
-    console.log({{context}});
-    conso;e.log({{latest_history_list}});
     var ctx = document.getElementById("myLine2Chart");
 var myLine2Chart = new Chart(ctx, {
   //グラフの種類
@@ -15,7 +13,7 @@ var myLine2Chart = new Chart(ctx, {
   //データの設定
   data: {
       //データ項目のラベル
-      labels: {{date}},
+      labels: ['11/10','11/09','11/08','11/07','11/06','11/05'],
       //データセット
       datasets: [
           {
