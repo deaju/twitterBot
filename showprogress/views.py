@@ -19,13 +19,13 @@ def sakura(request):
     context = {'progress':getProgress(latest_history_list) ,'date':getDate(latest_history_list)}
     return render(request, 'graph/index20.html', context)
 
-    def getDate(history_list):
-        returnValue=[]
-        for history in history_list:
-            returnValue.append(history.date.strftime("%Y/%m/%d"))
-        return returnValue
-    def getProgress(history_list):
-        returnValue=[]
-        for history in history_list:
-            returnValue.append(history.progress)
-        return returnValue
+def getDate(history_list):
+    returnValue=[]
+    for history in history_list:
+        returnValue.append(history.date.strftime("%Y/%m/%d"))
+    return returnValue
+def getProgress(history_list):
+    returnValue=[]
+    for history in history_list:
+        returnValue.append(history.progress)
+    return returnValue
