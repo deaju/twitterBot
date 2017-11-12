@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <link href="{% static 'graph/nv.d3.css'%}" rel="stylesheet" type="text/css">
 <body>
-    <canvas id="myLine2Chart" width="800" height="400"></canvas>
+    <canvas id="myLine2Chart" width="600" height="300"></canvas>
 
     <script src="{% static 'graph/Chart.min.js'%}"></script>
     <script type="text/javascript">
@@ -63,7 +63,8 @@ var myLine2Chart = new Chart(ctx, {
       hover: {
           //ホバー時の動作（single, label, dataset）
           mode: 'single'
-      }
+      },
+      responsive: false
   }
 });
     </script>
