@@ -16,3 +16,5 @@ static3==0.7.0
 beautifulsoup4==4.6.0
 selenium==3.7.0
 lxml==3.7.3
+djangorestframework==3.7.3
+django-filter==1.1.0
