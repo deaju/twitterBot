@@ -2,6 +2,7 @@
 $.getJSON(
     "api/nagoyan",
     null,
+    draw
 );
 
 function draw(data,status){
@@ -10,7 +11,8 @@ function draw(data,status){
     });
     var date = data.map(function(x){
         return data.date;
-    })
+    });
+    console
     var ctx = document.getElementById("myLine2Chart");
     var myLine2Chart = new Chart(ctx, {
       //グラフの種類
