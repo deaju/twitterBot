@@ -44,7 +44,7 @@ def storeProgress(conn,animeInfo):
     date=datetime.now().strftime("%Y-%m-%d")
     user='deaju'
     cur=conn.cursor()
-    cur.execute('INSERT INTO showprogress_history (title, progress, date, user, num) VALUES (%s,%s,%s,%s,%s)',[title,progress,date,user,num])
+    cur.execute('INSERT INTO showprogress_history (title, progress, date, "user", num) VALUES (%s,%s,%s,%s,%s)',[title,progress,date,user,num])
     conn.commit()
     cur.close()
     return
