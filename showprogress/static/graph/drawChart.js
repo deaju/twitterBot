@@ -5,14 +5,13 @@ $.getJSON(
     draw
 );
 
-function draw(data,status){
-    var progress = data.map(function(x){
-        return data.progress;
+function draw(getData,status){
+    var progress = getData.map(function(x){
+        return x.progress;
     });
-    var date = data.map(function(x){
-        return data.date;
+    var date = getData.map(function(x){
+        return x.date;
     });
-    console
     var ctx = document.getElementById("myLine2Chart");
     var myLine2Chart = new Chart(ctx, {
       //グラフの種類
