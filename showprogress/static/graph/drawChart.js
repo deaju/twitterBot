@@ -34,7 +34,7 @@ var myLine2Chart = new Chart(ctx, {
               //結合点より外でマウスホバーを認識する範囲（ピクセル単位）
               pointHitRadius: 15,
               //グラフのデータ
-              data: {{progress}}
+              data: []
           }
       ]
   },
