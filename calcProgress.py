@@ -90,11 +90,11 @@ def postTweet(twitter,delta):
         with open("smile.jpg", "rb") as imagefile:
               imagedata = imagefile.read()
         id_img = t_upload.media.upload(media=imagedata)["media_id_string"]
-        message="@nagoyan240 今日の進捗は{}話です。今までの進捗はここで確認できます。https://sleepy-savannah-66062.herokuapp.com/showprogress/nagoyan/".format(delta)
+        message="@nagoyan240 今日の進捗は{}話です。今までの進捗はここで確認できます。https://show-anime-progress.herokuapp.com/showprogress/nagoyan/".format(delta)
     elif delta <= 0:
         with open("anger.jpg", "rb") as imagefile:
               imagedata = imagefile.read()
-        message="@nagoyan240 進捗ありません.今までの進捗はここで確認できます。https://sleepy-savannah-66062.herokuapp.com/showprogress/nagoyan/"
+        message="@nagoyan240 進捗ありません.今までの進捗はここで確認できます。https://show-anime-progress.herokuapp.com/showprogress/nagoyan/"
         id_img = t_upload.media.upload(media=imagedata)["media_id_string"]
     twitter.statuses.update(status=message, media_ids=id_img)
 
