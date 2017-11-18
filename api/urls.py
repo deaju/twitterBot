@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .views import UserViewSet, EntryViewSet
+from .views import HistoryViewSet, NagoyanSakuraSet
 
 
 router = routers.DefaultRouter()
