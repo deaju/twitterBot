@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^nagoyan/$', views.sakura, name='index'),
+    url(r'^nagoyan/$', views.sakura, name='nagoyan'),
+    url(r'^deaju/$', views.deaju, name='deaju'),
     url(r'^(?P<title>[\w]+)/$', views.detail, name='detail'),
 ]
