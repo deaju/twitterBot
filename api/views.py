@@ -1,4 +1,3 @@
-import django_filters
 from rest_framework import viewsets, filters
 from rest_framework import generics
 from .models import History,NagoyanSakura
