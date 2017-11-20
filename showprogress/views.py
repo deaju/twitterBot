@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.core import serializers
 
 from .models import History,NagoyanSakura
+from django.db.models import Count
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
