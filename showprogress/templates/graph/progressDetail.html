@@ -1,0 +1,12 @@
+{% load static %}
+<meta charset="utf-8">
+<link href="{% static 'graph/nv.d3.css'%}" rel="stylesheet" type="text/css">
+<body>
+    <canvas id="myLine2Chart" width="1000" height="600"></canvas>
+    <script type="text/javascript">
+        var title={{title}};
+    </script>
+    <script src="{% static 'graph/Chart.min.js'%}"></script>
+    <script src="{% static 'graph/jquery-3.2.1.min.js'%}"> </script>
+    <script src="{% static 'graph/drawDetail.js'%}"> </script>
+</body>
