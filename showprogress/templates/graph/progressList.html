@@ -1,0 +1,9 @@
+{% if animes %}
+<ul>
+{% for anime in animes %}
+    <li><a href="/showprogress/{{ anime.title }}/">{{ anime.title }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No polls are available.</p>
+{% endif %}
