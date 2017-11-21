@@ -1,6 +1,6 @@
 
 $.getJSON(
-    "api/v1"+title,
+    "api/v1/"+title,
     null,
     draw
 );
