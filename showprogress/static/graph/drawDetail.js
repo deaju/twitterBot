@@ -6,8 +6,8 @@ $.getJSON(
 );
 
 function draw(getData,status){
-    var progress = getData.map(function(x){
-        return x.progress;
+    var num = getData.map(function(x){
+        return x.num;
     });
     var date = getData.map(function(x){
         return x.date;
@@ -48,7 +48,7 @@ function draw(getData,status){
                   //結合点より外でマウスホバーを認識する範囲（ピクセル単位）
                   pointHitRadius: 15,
                   //グラフのデータ
-                  data: progress
+                  data: num
               }
           ]
       },
