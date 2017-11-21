@@ -16,7 +16,7 @@ def deaju(request):
 
 def detail(request, title):
     context = {'title': title}
-    return render(request, 'graph/index20.html', context)    
+    return render(request, 'graph/progressDetail.html', context)    
 
 def sakura(request):
     return render(request, 'graph/index20.html')
