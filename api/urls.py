@@ -1,6 +1,6 @@
 from rest_framework import routers
 from .views import HistoryViewSet, NagoyanSakuraSet, HistoryFilterViewSet
-from django.conf.urls import url,inlucde
+from django.conf.urls import url,include
 from . import views
 
 
