@@ -97,3 +97,5 @@ def main():
         element=getHistory(driver,baseURL+historyURL+index)
         storePage(element,conn)
     driver.close()
+
+main()
