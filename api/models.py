@@ -10,6 +10,9 @@ class History(models.Model):
     num = models.IntegerField()
     def __str__(self):
         return smart_str('%s %s %s %s' % (self.title, self.progress, self.date, self.user))
+    class Meta:
+        managed = False
+        db_table = 'showprogress_history'
 
 class NagoyanSakura(models.Model):
     date = models.DateField(blank=True, null=True)
