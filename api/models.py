@@ -8,6 +8,7 @@ class History(models.Model):
     date = models.DateTimeField()
     user = models.CharField(max_length=100)
     num = models.IntegerField()
+    url = models.CharField(max_length=100)
     def __str__(self):
         return smart_str('%s %s %s %s' % (self.title, self.progress, self.date, self.user))
     class Meta:
