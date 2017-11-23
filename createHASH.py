@@ -1,4 +1,7 @@
 import hashlib
+from urllib import parse
+import psycopg2
+import os
 
 def connectPostgres():
     parse.uses_netloc.append("postgres")
@@ -15,7 +18,7 @@ def connectPostgres():
 
 def selectProgress(conn):
     cur = conn.cursor()
-    cur.execute('SELECT * FROM nagoyan_sakura')
+    cur.execute('SELECT * FROM showprogress_history')
     progress = cur.fetchall()
     cur.close()
     return progress
