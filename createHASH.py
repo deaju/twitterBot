@@ -33,8 +33,8 @@ def storeProgress(conn,url,title):
 def setURL(conn):
     progress = selectProgress(conn)
     for row in progress:
-        title = row[1].encode('utf-8')
-        url = hashlib.md5(title).hexdigest()
+        title = row[1]
+        url = hashlib.md5(title.encode('utf-8')).hexdigest()
         storeProgress(conn,url,title)
 
 def main():
