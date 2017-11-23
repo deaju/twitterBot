@@ -15,5 +15,5 @@ class NagoyanSakuraSet(viewsets.ModelViewSet):
 class HistoryFilterViewSet(generics.ListAPIView):
     serializer_class = HistorySerializer
     def get_queryset(self):
-        query_title = self.kwargs['title']
-        return History.objects.filter(title = query_title)
+        query_url = self.kwargs['url']
+        return History.objects.filter(title = query_url)

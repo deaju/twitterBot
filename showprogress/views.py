@@ -14,8 +14,12 @@ def deaju(request):
     context = {'animes':animes}
     return render(request, 'graph/progressList.html',context)
 
-def detail(request, title):
-    context = {'title': title}
+def detail(request, url):
+    title = History.objects.filter(url=url)[0]['title']
+    context = {
+        'title':title,
+        'url': url
+        }
     return render(request, 'graph/progressDetail.html', context)    
 
 def sakura(request):
