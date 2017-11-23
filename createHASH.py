@@ -35,6 +35,7 @@ def setURL(conn):
     for row in progress:
         title = row[1]
         url = hashlib.md5(title.encode('utf-8')).hexdigest()
+        print("%s,%s"%(title,url))
         storeProgress(conn,url,title)
 
 def main():
