@@ -16,4 +16,4 @@ class HistoryFilterViewSet(generics.ListAPIView):
     serializer_class = HistorySerializer
     def get_queryset(self):
         query_url = self.kwargs['url']
-        return History.objects.filter(title = query_url)
+        return History.objects.filter(url = query_url)
