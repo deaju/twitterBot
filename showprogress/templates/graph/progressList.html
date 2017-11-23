@@ -1,7 +1,7 @@
 {% if animes %}
 <ul>
 {% for anime in animes %}
-    <li><a href="/showprogress/{{ anime.urls }}/">{{ anime.title }}</a></li>
+    <li><a href="/showprogress/{{ anime.url }}/">{{ anime.title }}</a></li>
 {% endfor %}
 </ul>
 {% else %}
