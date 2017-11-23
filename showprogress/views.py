@@ -15,7 +15,7 @@ def deaju(request):
     return render(request, 'graph/progressList.html',context)
 
 def detail(request, url):
-    title = History.objects.filter(url=url)[0]['title']
+    title = History.objects.filter(url=url)[0].title
     context = {
         'title':title,
         'url': url
