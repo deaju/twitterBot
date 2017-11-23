@@ -25,7 +25,7 @@ def selectProgress(conn):
 
 def storeProgress(conn,url,title):
     cur=conn.cursor()
-    cur.execute('INSERT INTO showprogress_history (url) VALUES (%s) where title = (%s)',[url,title])
+    cur.execute('UPDATE showprogress_history SET url=(%s) where title=(%s)',[url,title])
     conn.commit()
     cur.close()
     return
