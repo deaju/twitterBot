@@ -26,5 +26,7 @@ def sakura(request):
     return render(request, 'graph/index20.html')
 
 def dashbord(request):
-    return render(request, 'app/index.html')
+    animes = History.objects.values('title','url').annotate(dcount=Count('title'))
+    context = {'animes':animes}
+    return render(request, 'app/index.html',context)
 
