@@ -25,3 +25,6 @@ def detail(request, url):
 def sakura(request):
     return render(request, 'graph/index20.html')
 
+def dashbord(request):
+    return render(requestm, 'app/index.html')
+

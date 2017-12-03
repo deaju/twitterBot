@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^nagoyan/$', views.sakura, name='nagoyan'),
     url(r'^deaju/$', views.deaju, name='deaju'),
     url(r'^(?P<url>[\w]+)/$', views.detail, name='detail'),
+    url(r'dashbord/$', views.dashbord, name='dashbord'),
 ]
