@@ -22,10 +22,10 @@ def detail(request, url):
         }
     return render(request, 'graph/progressDetail.html', context)
 
-def sakura(request):
+def sakuraT(request):
     return render(request, 'graph/index20.html')
 
-def sakuraTest(request):
+def sakura(request):
     context = {
        'user':'nagoyan',
        'profile':'/static/images/anger.jpg',
