@@ -70,7 +70,6 @@ function draw(getData,status){
               //ホバー時の動作（single, label, dataset）
               mode: 'single'
           },
-          responsive: false
       }
     });
 }
