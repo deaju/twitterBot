@@ -24,11 +24,24 @@ def detail(request, url):
 
 def sakura(request):
     return render(request, 'graph/index20.html')
+
 def sakuraTest(request):
-    return render(request, 'app/sakura.html')
+    context = {
+       'user':'nagoyan',
+       'profile':'/static/images/anger.jpg',
+       'progress':getHistoryProgress(NagoyanSakura,0),
+       'yesterday':calSubProgress(NagoyanSakura,0,1),
+       'lastWeek':calSubProgress(NagoyanSakura,0,7),
+    }
+    return render(request, 'app/sakura.html', context)
 
 def dashbord(request):
     animes = History.objects.values('title','url').annotate(dcount=Count('title'))
     context = {'animes':animes}
     return render(request, 'app/index.html',context)
 
+def getHistoryProgress(object,index):
+    return object.objects.values('date','progress').order_by('-date')[index]['progress']
+
+def calSubProgress(object,index1,index2):
+    return getHistoryProgress(object,index1) - getHistoryProgress(object,index2)
