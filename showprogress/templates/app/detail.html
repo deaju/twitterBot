@@ -7,9 +7,18 @@
 {% endblock stylesheets %}
 
 {% block content %}
+<script type="text/javascript">
+  var title="{{title}}";
+  var url = "{{url}}";
+</script>
 
   <div class="right_col" role="main">
     <!-- top tiles -->
+    <div class="row tile_count">
+      <div class="col-md-12 col-sm-4 col-xs-6 tile_stats_count">
+        <div class="count">{{title}}</div>
+      </div>
+    </div>
     <div class="row tile_count">
       <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-bar-chart"></i> 進捗</span>
@@ -77,5 +86,5 @@
   <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
   <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
   <!-- original -->
-  <script src="/static/graph/drawChart.js"> </script>
+  <script src="/static/graph/drawDetail.js"> </script>
 {% endblock javascripts %}
