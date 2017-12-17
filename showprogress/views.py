@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.core import serializers
 
 from api.models import History,NagoyanSakura
-from django.db.models import Count,Sum
+from django.db.models import Count,Sum,Max
 from datetime import datetime, timedelta
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -39,7 +39,7 @@ def dashbord(request):
         'profile':'/static/images/anger.jpg',
         'all':len(animes),
         'done':0,
-        'num':calcSubAll(animes),
+        'num':calcSubAll(),
         'animes':animes
     }
     return render(request, 'app/index.html',context)
@@ -58,9 +58,14 @@ def dashbordDetail(request,url):
     return render(request, 'app/detail.html', context)
 
 def getAnimes():
-    return History.objects.values('title','url').annotate(dcount=Count('title'))
+    day1 = getOldDate(0)
+    day2 = getOldDate(1)
+    animes = History.objects.filter(date__gte=day2, date__lte=day1).values('title','url','sub','num')
+    print(animes[5])
+    return animes
 
-def calcSubAll(animes):
+
+def calcSubAll():
     day = getOldDate(1)
     yesterday = getOldDate(2)
     totalNum = calcSubAllDay(getOldDate(1),getOldDate(0)) - calcSubAllDay(getOldDate(2),getOldDate(1))

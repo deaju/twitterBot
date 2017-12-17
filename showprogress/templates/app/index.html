@@ -25,13 +25,14 @@
         <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
       </div>
       <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-bar-chart"></i> 日の視聴数</span>
+        <span class="count_top"><i class="fa fa-bar-chart"></i> 今日の視聴数</span>
         <div class="count green">{{num}}</div>
         <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
       </div>
     </div>
     <!-- /top tiles -->
 
+    <!-- 
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="dashboard_graph">
@@ -56,7 +57,7 @@
         </div>
       </div>
     </div>
-
+    -->
      
      <div class="row">
  
@@ -82,8 +83,15 @@
               <div class="clearfix"></div>
             </div>
               {% for anime in animes %}
-              <div class="fa-hover col-md-3 col-sm-4 col-xs-12"><a href="/showprogress/dashbord/{{ anime.url }}/"><i class="fa fa-adjust"></i> {{ anime.title }}
+              {% if anime.sub > 0%}
+              <div class="fa-hover col-md-3 col-sm-4 col-xs-12"><a href="/showprogress/dashbord/{{ anime.url }}/"><i class="fa fa-adjust"></i><i class="red">{{ anime.title }}</i> 
+                <span class="count_bottom"><i class="green">{{anime.num}} </i> </span>
               </div>
+              {% else %}
+              <div class="fa-hover col-md-3 col-sm-4 col-xs-12"><a href="/showprogress/dashbord/{{ anime.url }}/"><i class="fa fa-adjust"></i> {{ anime.title }}
+                <span class="count_bottom"><i class="green">{{anime.num}} </i> </span>
+              </div>
+              {% endif %} 
               {% endfor %}
           </div>
         </div>
