@@ -44,14 +44,14 @@ def storeProgress(conn,animeInfo):
     date=datetime.now().strftime("%Y-%m-%d")
     user='deaju'
     url=hashlib.md5(title.encode('utf-8')).hexdigest()
-    sub=selectSub(conn,title)
+    sub=num - selectBeforeNum(conn,title)
     cur=conn.cursor()
     cur.execute('INSERT INTO showprogress_history (title, progress, date, "user", num, url, sub) VALUES (%s,%s,%s,%s,%s,%s,%s)',[title,progress,date,user,num,url,sub])
     conn.commit()
     cur.close()
     return
 
-def selectSub(conn,title):
+def selectBeforeNum(conn,title):
     cur = conn.cursor()
     cur.execute('SELECT * FROM showprogress_history where title=(%s) ORDER BY date DESC',[title])
     progress = cur.fetchone()
