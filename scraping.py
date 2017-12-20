@@ -44,12 +44,26 @@ def storeProgress(conn,animeInfo):
     date=datetime.now().strftime("%Y-%m-%d")
     user='deaju'
     url=hashlib.md5(title.encode('utf-8')).hexdigest()
-    sub=num - selectBeforeNum(conn,title)
-    cur=conn.cursor()
-    cur.execute('INSERT INTO showprogress_history (title, progress, date, "user", num, url, sub) VALUES (%s,%s,%s,%s,%s,%s,%s)',[title,progress,date,user,num,url,sub])
-    conn.commit()
-    cur.close()
+    sub=int(num) - selectBeforeNum(conn,title)
+    if isNoneTodatyData(conn, title, date):
+        cur=conn.cursor()
+        cur.execute('INSERT INTO showprogress_history (title, progress, date, "user", num, url, sub) VALUES (%s,%s,%s,%s,%s,%s,%s)',[title,progress,date,user,num,url,sub])
+        conn.commit()
+        cur.close()
+    else:
+        cur=conn.cursor()
+        print('UPDATE showprogress_history SET progress=(%s) AND "user"=(%s) AND num=(%s) AND url=(%s) AND sub=(%s) where title=(%s) AND date=(%s)'%(progress,user,num,url,sub,title,date))
+        cur.execute('UPDATE showprogress_history SET progress=(%s), "user"=(%s), num=(%s), url=(%s), sub=(%s) where title=(%s) AND date=(%s)',[progress,user,num,url,sub,title,date])
+        conn.commit()
+        cur.close()
     return
+
+def isNoneTodatyData(conn, title, date):
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM showprogress_history where title=(%s) AND date=(%s)',[title,date])
+    progress = cur.fetchone()
+    cur.close()
+    return progress == None
 
 def selectBeforeNum(conn,title):
     cur = conn.cursor()
