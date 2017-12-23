@@ -45,18 +45,25 @@ def storeProgress(conn,animeInfo):
     user='deaju'
     url=hashlib.md5(title.encode('utf-8')).hexdigest()
     sub=int(num) - selectBeforeNum(conn,title)
-    if isNoneTodatyData(conn, title, date):
+    isComplete = animeInfo['isComplete']
+    if isNoneTodatyData(conn, title, date) and not isComplete:
         cur=conn.cursor()
-        cur.execute('INSERT INTO showprogress_history (title, progress, date, "user", num, url, sub) VALUES (%s,%s,%s,%s,%s,%s,%s)',[title,progress,date,user,num,url,sub])
+        cur.execute('INSERT INTO showprogress_history (title, progress, date, "user", num, url, sub, isComplete) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',[title,progress,date,user,num,url,sub,isComplete])
+        conn.commit()
+        cur.close()
+    elif not isComplete:
+        cur=conn.cursor()
+        cur.execute('UPDATE showprogress_history SET progress=(%s), "user"=(%s), num=(%s), url=(%s), sub=(%s),isComplete=(%s) where title=(%s) AND date=(%s)',[progress,user,num,url,sub,isComplete,title,date])
         conn.commit()
         cur.close()
     else:
+        beforeDate=selectBeforeDate(conn,title)
         cur=conn.cursor()
-        print('UPDATE showprogress_history SET progress=(%s) AND "user"=(%s) AND num=(%s) AND url=(%s) AND sub=(%s) where title=(%s) AND date=(%s)'%(progress,user,num,url,sub,title,date))
-        cur.execute('UPDATE showprogress_history SET progress=(%s), "user"=(%s), num=(%s), url=(%s), sub=(%s) where title=(%s) AND date=(%s)',[progress,user,num,url,sub,title,date])
+        cur.execute('UPDATE showprogress_history SET isComplete=(%s),date=(%s) where title=(%s) AND date=(%s)',[isComplete,date,title,beforeDate])
         conn.commit()
         cur.close()
     return
+
 
 def isNoneTodatyData(conn, title, date):
     cur = conn.cursor()
@@ -66,11 +73,17 @@ def isNoneTodatyData(conn, title, date):
     return progress == None
 
 def selectBeforeNum(conn,title):
+    return selectBefore(conn,title,5)
+
+def selectBeforeDate(conn,title):
+    return selectBefore(conn,title,3)
+
+def selectBefore(conn,title,index):
     cur = conn.cursor()
     cur.execute('SELECT * FROM showprogress_history where title=(%s) ORDER BY date DESC',[title])
     progress = cur.fetchone()
     cur.close()
-    return progress[5]
+    return progress[index]
 
 def login(driver,url):
     driver.get(url)
@@ -96,7 +109,12 @@ def getAnimeInfo(element):
         ##number = elementNum.replace('\n','')
     elementProgress=element.find(class_='progressCompleted').attrs['style']
     progress=re.search('([0-9]+)',elementProgress).group(0)
-    return {'title':title,'number':number,'progress':progress}
+    if element.find(class_='icon iconTextComplete') == None:
+        isComplete=False
+    else:
+        isComplete=True
+    return {'title':title,'number':number,'progress':progress,'isComplete':isComplete}
+    
 
 def getIndexHistoryPage(driver,url):
     driver.get(url)
